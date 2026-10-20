@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+  <meta name="theme-color" content="#040d18"/>
+  <title>ATHENA · Resistencia Pedagógica</title>
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="css/base.css"/>
+  <link rel="stylesheet" href="css/jarvis.css"/>
+
+  <!-- A-Frame + MindAR (DEBEN cargarse en <head>) -->
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+</head>
+
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     PANTALLA 1: BIENVENIDA
+     ═══════════════════════════════════════════════════════════════ -->
+<div id="screen-bienvenida" class="screen active">
+
+  <!-- Logo animado -->
+  <div class="aurora-logo">
+    <div class="aurora-ring"></div>
+    <div class="aurora-ring"></div>
+    <div class="aurora-ring"></div>
+    <div class="aurora-core"></div>
+  </div>
+
+  <div>
+    <div class="aurora-title">ATHENA</div>
+    <div class="aurora-subtitle">Sistema de Resistencia · Nova Educa 2050</div>
+  </div>
+
+  <p class="aurora-desc">
+    Inteligencia holográfica de la Resistencia Pedagógica.<br/>
+    Apunta tu cámara a los marcadores para acceder a los códigos de misión.
+  </p>
+
+  <!-- Aviso Safari iOS -->
+  <div id="safari-warning" class="safari-note">
+    <span style="font-size:1.1rem">⚠</span>
+    Esta experiencia funciona mejor en Safari
+  </div>
+
+  <!-- Error fatal (si hay) -->
+  <div id="fatal-error" class="error-msg"></div>
+
+  <button id="btn-iniciar" class="btn-primary">
+    ▶ INICIAR
+  </button>
+
+  <div class="aurora-subtitle" style="font-size:clamp(0.58rem,2.5vw,0.68rem); opacity:0.4; margin-top:0.5rem;">
+    Requiere acceso a cámara y audio
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     PANTALLA 3: LOADING
+     ═══════════════════════════════════════════════════════════════ -->
+<div id="screen-loading" class="screen">
+  <div class="loading-icon"></div>
+  <div class="loading-label">Iniciando ATHENA</div>
+  <div class="progress-track">
+    <div class="progress-fill" id="progress-bar"></div>
+  </div>
+  <div id="loading-text" class="t-hud" style="color:var(--c-muted);font-size:clamp(0.68rem,3vw,0.8rem);letter-spacing:0.06em;">
+    Preparando sistema...
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     ESCENA A-FRAME / MINDAR
+     Solo 2 targets activos — agregar más cuando estén listos
+     ═══════════════════════════════════════════════════════════════ -->
+<a-scene
+  mindar-image="imageTargetSrc: assets/targets/targets.mind; uiLoading: no; uiScanning: no;"
+  vr-mode-ui="enabled: false"
+  device-orientation-permission-ui="enabled: false"
+  color-space="sRGB"
+  renderer="colorManagement: true;">
+
+  <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+  <!-- TARGET 0: Audio Misión I -->
+  <a-entity id="target-0" mindar-image-target="targetIndex: 0">
+    <!-- Plano invisible — MindAR necesita al menos un hijo -->
+    <a-plane width="1" height="1" opacity="0" position="0 0 0"></a-plane>
+  </a-entity>
+
+  <!-- TARGET 1: Clave Núcleo 1 -->
+  <a-entity id="target-1" mindar-image-target="targetIndex: 1">
+    <a-plane width="1" height="1" opacity="0" position="0 0 0"></a-plane>
+  </a-entity>
+
+  <a-entity id="target-2" mindar-image-target="targetIndex: 2">
+    <a-plane width="1" height="1" opacity="0"></a-plane>
+  </a-entity>
+
+  <a-entity id="target-3" mindar-image-target="targetIndex: 3">
+    <a-plane width="1" height="1" opacity="0"></a-plane>
+  </a-entity>
+
+  <a-entity id="target-4" mindar-image-target="targetIndex: 4">
+    <a-plane width="1" height="1" opacity="0"></a-plane>
+  </a-entity>
+
+  <a-entity id="target-5" mindar-image-target="targetIndex: 5">
+    <a-plane width="1" height="1" opacity="0"></a-plane>
+  </a-entity>
+
+  <a-entity id="target-6" mindar-image-target="targetIndex: 6">
+    <a-plane width="1" height="1" opacity="0"></a-plane>
+  </a-entity>
+
+  <a-entity id="target-7" mindar-image-target="targetIndex: 7">
+    <a-plane width="1" height="1" opacity="0"></a-plane>
+  </a-entity>
+
+  <a-entity id="target-8" mindar-image-target="targetIndex: 8">
+    <a-plane width="1" height="1" opacity="0"></a-plane>
+  </a-entity>
+
+  <a-entity id="target-9" mindar-image-target="targetIndex: 9">
+    <a-plane width="1" height="1" opacity="0"></a-plane>
+  </a-entity>
+
+  <a-entity id="target-10" mindar-image-target="targetIndex: 10">
+    <a-plane width="1" height="1" opacity="0"></a-plane>
+  </a-entity>
+
+  <a-entity id="target-11" mindar-image-target="targetIndex: 11">
+    <a-plane width="1" height="1" opacity="0"></a-plane>
+  </a-entity>
+
+  <a-entity id="target-12" mindar-image-target="targetIndex: 12">
+    <a-plane width="1" height="1" opacity="0"></a-plane>
+  </a-entity>
+
+  <!-- Agregar más targets aquí cuando tengas los marcadores compilados -->
+
+</a-scene>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     PANTALLA 4: AR ACTIVO (transparente)
+     Contiene solo los elementos UI superpuestos
+     ═══════════════════════════════════════════════════════════════ -->
+<div id="screen-ar" class="screen">
+
+  <!-- Badge de grupo activo (esquina superior derecha) -->
+  <div id="grupo-badge" class="visible">
+    <div class="badge-dot"></div>
+    <span id="badge-text" class="badge-text">GRUPO –</span>
+  </div>
+
+  <!-- Instrucción de escaneo -->
+  <div id="scan-hint" class="visible">
+    <div class="scan-icon"></div>
+    <span class="scan-text">Apunta la cámara a un marcador</span>
+  </div>
+
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SCRIPTS — ORDEN CRÍTICO PARA iOS
+     1. config      (datos, sin dependencias)
+     2. tts-manager (clase lista antes que todo)
+     3. audio-manager
+     4. jarvis-ui
+     5. ar-controller
+     6. main        (dispara todo al click del usuario)
+     ═══════════════════════════════════════════════════════════════ -->
+<script src="js/config.js"></script>
+<script src="js/tts-manager.js"></script>
+<script src="js/audio-manager.js"></script>
+<script src="js/jarvis-ui.js"></script>
+<script src="js/ar-controller.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+</html>

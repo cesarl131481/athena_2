@@ -1,0 +1,224 @@
+/* jarvis.css — Estilos de pantallas y elementos AURORA AR */
+
+/* ── PANTALLA BIENVENIDA ─────────────────────────────────────────────────── */
+#screen-bienvenida {
+  background: radial-gradient(ellipse at 30% 40%, #061428 0%, #020810 70%);
+  gap: clamp(1.2rem, 5vw, 2rem);
+  text-align: center;
+}
+
+.aurora-logo {
+  position: relative;
+  width: clamp(100px, 30vw, 150px);
+  height: clamp(100px, 30vw, 150px);
+  margin: 0 auto;
+}
+
+.aurora-ring {
+  position: absolute; inset: 0;
+  border-radius: 50%;
+  border: 2px solid;
+  animation: spin linear infinite;
+}
+.aurora-ring:nth-child(1) {
+  border-color: rgba(0,212,255,0.6) transparent transparent transparent;
+  animation-duration: 3s;
+}
+.aurora-ring:nth-child(2) {
+  inset: 12%;
+  border-color: transparent rgba(0,102,255,0.5) transparent transparent;
+  animation-duration: 2s;
+  animation-direction: reverse;
+}
+.aurora-ring:nth-child(3) {
+  inset: 28%;
+  border-color: rgba(0,212,255,0.3) transparent rgba(0,212,255,0.3) transparent;
+  animation-duration: 4s;
+}
+
+.aurora-core {
+  position: absolute; inset: 38%;
+  background: radial-gradient(circle, #00d4ff 0%, #0066ff 60%, transparent 100%);
+  border-radius: 50%;
+  animation: pulse-core 2s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes pulse-core {
+  0%,100% { opacity: 0.7; transform: scale(1); }
+  50%      { opacity: 1;   transform: scale(1.15); }
+}
+
+.aurora-title {
+  font-family: var(--font-title);
+  font-size: clamp(1.8rem, 8vw, 2.8rem);
+  font-weight: 900;
+  color: var(--c-primary);
+  letter-spacing: 0.2em;
+  text-shadow: 0 0 30px rgba(0,212,255,0.5);
+}
+
+.aurora-subtitle {
+  font-family: var(--font-hud);
+  font-size: clamp(0.65rem, 3vw, 0.82rem);
+  color: var(--c-muted);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+.aurora-desc {
+  font-family: var(--font-body);
+  font-size: clamp(0.82rem, 3.5vw, 0.95rem);
+  color: rgba(232,244,255,0.7);
+  line-height: 1.7;
+  max-width: 320px;
+  font-weight: 300;
+}
+
+/* ── PANTALLA GRUPO ──────────────────────────────────────────────────────── */
+#screen-grupo {
+  background: radial-gradient(ellipse at 50% 30%, #061428 0%, #020810 70%);
+  gap: clamp(1rem, 4vw, 1.75rem);
+  text-align: center;
+}
+
+.grupo-header {
+  font-family: var(--font-hud);
+  font-size: clamp(0.62rem, 2.8vw, 0.78rem);
+  color: var(--c-primary);
+  letter-spacing: 0.2em;
+  opacity: 0.7;
+  text-transform: uppercase;
+}
+
+.grupo-title {
+  font-family: var(--font-title);
+  font-size: clamp(1.1rem, 5vw, 1.6rem);
+  font-weight: 700;
+  color: var(--c-white);
+  letter-spacing: 0.08em;
+}
+
+.grupo-input-wrap {
+  width: 100%;
+  max-width: 220px;
+}
+
+.grupo-hint {
+  font-family: var(--font-hud);
+  font-size: clamp(0.62rem, 2.5vw, 0.72rem);
+  color: var(--c-muted);
+  letter-spacing: 0.08em;
+  margin-top: 0.4rem;
+}
+
+/* ── PANTALLA LOADING ────────────────────────────────────────────────────── */
+#screen-loading {
+  background: #020810;
+  gap: clamp(1rem, 4vw, 1.5rem);
+  text-align: center;
+}
+
+.loading-icon {
+  width: clamp(48px, 14vw, 72px);
+  height: clamp(48px, 14vw, 72px);
+  border: 2px solid rgba(0,212,255,0.2);
+  border-top-color: var(--c-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto;
+}
+
+.loading-label {
+  font-family: var(--font-hud);
+  font-size: clamp(0.65rem, 3vw, 0.78rem);
+  color: var(--c-primary);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+#loading-text {
+  font-family: var(--font-hud);
+  font-size: clamp(0.72rem, 3vw, 0.85rem);
+  color: var(--c-muted);
+  letter-spacing: 0.06em;
+  min-height: 1.4em;
+}
+
+/* ── INDICADOR DE GRUPO ACTIVO (en AR) ───────────────────────────────────── */
+#grupo-badge {
+  position: fixed;
+  top: clamp(10px, 3vw, 18px);
+  right: clamp(10px, 3vw, 18px);
+  z-index: 200;
+  background: rgba(0,8,20,0.75);
+  border: 1px solid rgba(0,212,255,0.35);
+  border-radius: 6px;
+  padding: 0.35rem 0.75rem;
+  display: none;
+  pointer-events: none;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+#grupo-badge.visible { display: flex; align-items: center; gap: 0.4rem; }
+
+.badge-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--c-green);
+  animation: blink-dot 2s ease-in-out infinite;
+}
+@keyframes blink-dot {
+  0%,100%{ opacity:1; } 50%{ opacity:0.3; }
+}
+
+.badge-text {
+  font-family: var(--font-hud);
+  font-size: clamp(0.62rem, 2.5vw, 0.72rem);
+  color: var(--c-primary);
+  letter-spacing: 0.08em;
+}
+
+/* ── INSTRUCCIÓN DE ESCANEO ──────────────────────────────────────────────── */
+#scan-hint {
+  position: fixed;
+  bottom: clamp(20px, 6vw, 40px);
+  left: 50%; transform: translateX(-50%);
+  z-index: 200;
+  background: rgba(0,8,20,0.65);
+  border: 1px solid rgba(0,212,255,0.25);
+  border-radius: 24px;
+  padding: 0.6rem 1.25rem;
+  display: none;
+  align-items: center; gap: 0.6rem;
+  pointer-events: none;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  white-space: nowrap;
+}
+#scan-hint.visible { display: flex; }
+
+.scan-icon {
+  width: 20px; height: 20px;
+  border: 2px solid rgba(0,212,255,0.6);
+  border-radius: 4px;
+  position: relative;
+  animation: scan-pulse 2s ease-in-out infinite;
+}
+.scan-icon::before {
+  content:'';
+  position:absolute; top:0; left:0; right:0;
+  height:2px; background:var(--c-primary);
+  animation: scan-line 2s ease-in-out infinite;
+}
+@keyframes scan-pulse { 0%,100%{opacity:0.6} 50%{opacity:1} }
+@keyframes scan-line  { 0%{top:0} 50%{top:calc(100% - 2px)} 100%{top:0} }
+
+.scan-text {
+  font-family: var(--font-hud);
+  font-size: clamp(0.65rem, 3vw, 0.78rem);
+  color: var(--c-muted);
+  letter-spacing: 0.08em;
+}

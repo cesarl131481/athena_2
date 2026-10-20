@@ -1,0 +1,154 @@
+/* base.css — Reset y variables AURORA AR */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=Exo+2:wght@300;400;600&display=swap');
+
+:root {
+  --c-bg:      #040d18;
+  --c-navy:    #061428;
+  --c-border:  #1a4a7a;
+  --c-primary: #00d4ff;
+  --c-green:   #00ff88;
+  --c-amber:   #ff6b00;
+  --c-white:   #e8f4ff;
+  --c-muted:   #5a8ab0;
+  --c-danger:  #ff3344;
+
+  --font-hud:   'Share Tech Mono', monospace;
+  --font-title: 'Orbitron', sans-serif;
+  --font-body:  'Exo 2', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  width: 100%; height: 100%;
+  overflow: hidden;
+  font-family: var(--font-body);
+  color: var(--c-white);
+  /* CRÍTICO: body transparente en modo AR para no tapar el canvas */
+  background: transparent;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+}
+
+body.ar-active { background: transparent !important; }
+
+/* Ocultar botones propios de A-Frame */
+.a-enter-vr, .a-enter-ar,
+.a-loader-title, .a-orientation-modal { display: none !important; }
+
+/* A-Scene ocupa toda la pantalla */
+a-scene {
+  position: fixed !important;
+  top: 0 !important; left: 0 !important;
+  width: 100% !important; height: 100% !important;
+  z-index: 0 !important;
+}
+
+/* ── Pantallas ────────────────────────────────────────────────────────────── */
+.screen {
+  position: fixed; inset: 0; z-index: 50;
+  display: none; flex-direction: column;
+  align-items: center; justify-content: center;
+  background: var(--c-bg);
+  padding: clamp(1rem, 5vw, 2.5rem);
+}
+.screen.active { display: flex; }
+
+/* La pantalla AR no tiene fondo — deja ver la cámara */
+#screen-ar {
+  background: transparent;
+  pointer-events: none;
+  z-index: 10;
+}
+#screen-ar.active { display: block; }
+
+/* ── Tipografía utilitaria ───────────────────────────────────────────────── */
+.t-hud   { font-family: var(--font-hud);   }
+.t-title { font-family: var(--font-title); }
+.t-body  { font-family: var(--font-body);  }
+
+.text-primary { color: var(--c-primary); }
+.text-green   { color: var(--c-green);   }
+.text-muted   { color: var(--c-muted);   }
+
+/* ── Botón primario ──────────────────────────────────────────────────────── */
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  background: transparent;
+  border: 2px solid var(--c-primary);
+  color: var(--c-primary);
+  font-family: var(--font-title);
+  font-size: clamp(0.85rem, 4vw, 1rem);
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  padding: clamp(0.75rem, 3vw, 1rem) clamp(1.5rem, 6vw, 2.5rem);
+  border-radius: 4px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: background 0.2s, box-shadow 0.2s;
+  -webkit-tap-highlight-color: transparent;
+  pointer-events: all;
+}
+.btn-primary:active {
+  background: rgba(0,212,255,0.15);
+  box-shadow: 0 0 20px rgba(0,212,255,0.4);
+}
+
+/* ── Input ───────────────────────────────────────────────────────────────── */
+.hud-input {
+  background: rgba(0,212,255,0.06);
+  border: 2px solid rgba(0,212,255,0.3);
+  border-radius: 6px;
+  color: var(--c-primary);
+  font-family: var(--font-title);
+  font-size: clamp(1.5rem, 7vw, 2.2rem);
+  font-weight: 900;
+  text-align: center;
+  letter-spacing: 0.2em;
+  padding: 0.75rem;
+  width: 100%;
+  outline: none;
+  -webkit-appearance: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.hud-input:focus {
+  border-color: var(--c-primary);
+  box-shadow: 0 0 20px rgba(0,212,255,0.25);
+}
+
+/* ── Barra de progreso ───────────────────────────────────────────────────── */
+.progress-track {
+  width: 100%; max-width: 320px;
+  height: 4px; background: rgba(0,212,255,0.12);
+  border-radius: 2px; overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #0066ff, #00d4ff);
+  border-radius: 2px;
+  width: 0%;
+  transition: width 0.4s ease;
+}
+
+/* ── Mensaje de error ────────────────────────────────────────────────────── */
+.error-msg {
+  color: var(--c-danger);
+  font-family: var(--font-hud);
+  font-size: clamp(0.72rem, 3vw, 0.85rem);
+  text-align: center;
+  margin-top: 0.5rem;
+  display: none;
+}
+
+/* ── Indicador Safari iOS ────────────────────────────────────────────────── */
+.safari-note {
+  display: none;
+  align-items: center; gap: 0.5rem;
+  color: var(--c-amber);
+  font-family: var(--font-hud);
+  font-size: clamp(0.7rem, 3vw, 0.82rem);
+  background: rgba(255,107,0,0.08);
+  border: 1px solid rgba(255,107,0,0.3);
+  padding: 0.6rem 1rem; border-radius: 6px;
+  margin-top: 1rem;
+}
